@@ -1,0 +1,140 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mathew Rayan</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'portfolio/images/favicon.ico' %}">
+
+</head>
+<body>
+
+
+<body>
+
+<header class="navbar">
+    <div class="container nav-inner">
+        <a class="brand" href="/">
+            {% if profile %}
+                {{ profile.full_name }}
+            {% else %}
+                My Portfolio
+            {% endif %}
+        </a>
+       <nav>
+        <a href="{% url 'portfolio:home' %}">Home</a>
+        <a href="{% url 'portfolio:projects' %}">Projects</a>
+        <a href="{% url 'portfolio:skills' %}">Skills</a>
+        <a href="{% url 'portfolio:experience' %}">Experience</a>
+        <a href="{% url 'portfolio:contact' %}">Contact</a>
+       </nav>
+
+    </div>
+</header>
+
+<main class="container">
+    {% block hero %}{% endblock %}
+    {% block content %}{% endblock %}
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const animatedItems = document.querySelectorAll(".experience-animate");
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  animatedItems.forEach(item => observer.observe(item));
+});
+</script>
+<script>
+  const counters = document.querySelectorAll('.stat-number');
+
+  const runCounter = (counter) => {
+    const target = +counter.getAttribute('data-target');
+    const speed = 300; // lower = faster
+
+    const update = () => {
+      const current = +counter.innerText;
+      const increment = Math.ceil(target / speed);
+
+      if (current < target) {
+        counter.innerText = current + increment;
+        setTimeout(update, 20);
+      } else {
+        counter.innerText = target + (target === 10 ? '+' : '%');
+      }
+    };
+
+    update();
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        runCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+
+  counters.forEach(counter => observer.observe(counter));
+</script>
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-brand">
+      <h3>Mathew Rayan</h3>
+      <p>
+        Full Stack Python Developer focused on building clean, scalable,
+        and user-friendly web applications.
+      </p>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="{% url 'portfolio:home' %}">Home</a></li>
+        <li><a href="{% url 'portfolio:projects' %}">Projects</a></li>
+        <li><a href="{% url 'portfolio:skills' %}">Skills</a></li>
+        <li><a href="{% url 'portfolio:experience' %}">Experience</a></li>
+        <li><a href="{% url 'portfolio:contact' %}">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-social">
+      <h4>Connect</h4>
+      <div class="social-icons">
+        <a href="https://github.com/mathew12300" target="_blank">GitHub</a>
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        <a href="mailto:yourmail@gmail.com">Email</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© {{ now|date:"Y" }} Mathew Rayan. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
+
+

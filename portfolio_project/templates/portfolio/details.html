@@ -1,0 +1,67 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+<section class="project-detail-section">
+  <div class="container project-detail-grid">
+
+    <!-- LEFT CONTENT -->
+    <div class="project-detail-content">
+
+      <h1 class="project-detail-title">
+        {{ project.title }}
+      </h1>
+
+      <p class="project-detail-summary">
+  A full-stack web application that transforms structured data into meaningful insights, enabling informed decision-making through interactive dashboards and backend-driven analysis.
+</p>
+
+
+      <h3 class="project-subtitle">Key Features</h3>
+      <ul class="project-feature-list">
+        {% for feature in project.features %}
+          <li>✔ {{ feature }}</li>
+        {% endfor %}
+      </ul>
+
+      <h3 class="project-subtitle">Tech Stack</h3>
+<div class="project-tech-tags">
+  {% for tech in project.tech_stack %}
+    <span class="tech-chip">{{ tech }}</span>
+  {% endfor %}
+</div>
+
+
+      <div class="project-actions">
+       <a href="{{ project.repo_url }}" target="_blank" class="btn-primary">
+       View Repository
+      </a>
+
+      <a href="{% url 'portfolio:projects' %}" class="btn-outline">
+      ← Back to Projects
+     </a>
+     </div>
+
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="project-detail-side">
+      <div class="project-info-card">
+        <h4>Project Focus</h4>
+       <p>Backend-driven decision logic, structured data handling, and real-time visual insights.</p>
+
+       <h4>Category</h4>
+        <p>Full Stack Web Application</p>
+
+      <h4>Status</h4>
+     <p class="status-complete">Completed</p>
+    </div>
+
+    </div>
+
+  </div>
+</section>
+{% endblock %}

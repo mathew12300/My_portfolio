@@ -1,0 +1,65 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+
+    <h1 class="section-title">Projects</h1>
+
+    <p class="section-subtitle">
+      A curated collection of full-stack web projects showcasing my experience
+      in building practical, scalable, and user-focused applications using
+      Python and Django.
+    </p>
+
+    <div class="projects-grid">
+
+      {% for project in projects %}
+      <div class="project-card">
+
+        <!-- PROJECT TITLE -->
+        <h3 class="project-title">{{ project.title }}</h3>
+
+        <!-- DESCRIPTION -->
+        <p class="project-desc">
+          {{ project.description }}
+        </p>
+
+        <!-- TECH STACK -->
+        {% if project.tech_stack %}
+        <div class="tech-tags">
+          {% for tech in project.tech_stack %}
+            <span class="tech-chip">{{ tech }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- ACTIONS -->
+        <div class="project-actions">
+
+          {% if project.slug %}
+          <a href="{% url 'portfolio:project_detail' project.slug %}" class="btn-primary">
+            View Details
+          </a>
+          {% endif %}
+
+          {% if project.repo_url %}
+          <a href="{{ project.repo_url }}" target="_blank" class="btn-outline">
+            GitHub
+          </a>
+          {% endif %}
+
+        </div>
+
+      </div>
+      {% empty %}
+        <p class="section-subtitle">No projects available at the moment.</p>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+{% endblock %}
