@@ -1378,7 +1378,8 @@ a:hover {
 ========================================= */
 
 .technical-skills-section {
-  max-width: 1000px;
+  max-width: 100%;
+  width: auto;
   margin: 0 auto;
   padding: 100px 20px;
   text-align: center;
@@ -1688,3 +1689,23 @@ a:hover {
     font-size: 0.95rem;
   }
 }
+
+/* Phones */
+@media (max-width: 600px) {
+  nav, header, section, footer {
+    padding: 10px;
+    text-align: center;
+  }
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .hero h1, .hero p {
+    font-size: 1.5rem;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
