@@ -1709,3 +1709,77 @@ a:hover {
   }
 }
 
+.project-container {
+  display: flex;
+}
+/* ===============================
+   MOBILE RESPONSIVE FIX
+================================ */
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  nav {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* MAIN PROJECT LAYOUT */
+  .project-container {
+    flex-direction: column;
+    gap: 24px;
+    padding: 20px;
+  }
+
+  /* LEFT CONTENT */
+  .project-content {
+    width: 100%;
+    text-align: center;
+  }
+
+  .project-content h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .project-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* KEY FEATURES */
+  .key-features {
+    text-align: left;
+    padding: 0 10px;
+  }
+
+  /* TECH STACK */
+  .tech-stack {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* RIGHT INFO CARD */
+  .project-info {
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .project-info h3 {
+    text-align: center;
+  }
+
+  /* BUTTON */
+  .view-repo-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+  }
+}
