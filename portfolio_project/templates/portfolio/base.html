@@ -96,43 +96,71 @@ document.addEventListener("DOMContentLoaded", () => {
 <footer class="footer">
   <div class="footer-container">
 
-    <!-- LEFT -->
+    <!-- BRAND -->
     <div class="footer-brand">
       <h3>Mathew Rayan</h3>
       <p>
-        Full Stack Python Developer focused on building clean, scalable,
-        and user-friendly web applications.
+        Full Stack Python Developer focused on building clean,
+        scalable, and user-friendly web applications.
       </p>
     </div>
 
-    <!-- CENTER -->
+    <!-- QUICK LINKS -->
     <div class="footer-links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="{% url 'portfolio:home' %}">Home</a></li>
-        <li><a href="{% url 'portfolio:projects' %}">Projects</a></li>
-        <li><a href="{% url 'portfolio:skills' %}">Skills</a></li>
-        <li><a href="{% url 'portfolio:experience' %}">Experience</a></li>
-        <li><a href="{% url 'portfolio:contact' %}">Contact</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/skills">Skills</a></li>
+        <li><a href="/experience">Experience</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
     </div>
 
-    <!-- RIGHT -->
+    <!-- SOCIAL -->
     <div class="footer-social">
       <h4>Connect</h4>
       <div class="social-icons">
-        <a href="https://github.com/mathew12300" target="_blank">GitHub</a>
-        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-        <a href="mailto:yourmail@gmail.com">Email</a>
+        <a href="https://github.com/" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
+        <a href="mailto:your@email.com">Email</a>
       </div>
     </div>
 
   </div>
 
   <div class="footer-bottom">
-    <p>© {{ now|date:"Y" }} Mathew Rayan. All rights reserved.</p>
+    <p>© 2026 Mathew Rayan. All rights reserved.</p>
   </div>
 </footer>
+
+<div id="cursor-stars"></div>
+
+<script>
+  const starContainer = document.getElementById("cursor-stars");
+
+  document.addEventListener("mousemove", (e) => {
+    const star = document.createElement("span");
+    star.className = "cursor-star";
+
+    const size = Math.random() * 4 + 4;
+    const offsetX = (Math.random() - 0.5) * 40;
+    const offsetY = (Math.random() - 0.5) * 40;
+
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+    star.style.left = e.clientX + "px";
+    star.style.top = e.clientY + "px";
+    star.style.setProperty("--x", `${offsetX}px`);
+    star.style.setProperty("--y", `${offsetY}px`);
+
+    starContainer.appendChild(star);
+
+    setTimeout(() => {
+      star.remove();
+    }, 1200);
+  });
+</script>
 
 </body>
 </html>
