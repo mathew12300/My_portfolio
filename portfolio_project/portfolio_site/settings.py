@@ -4,8 +4,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'replace-this-with-a-secure-key'
-DEBUG = True
-ALLOWED_HOSTS = ['.onrender.com']
+DEBUG = False
+ALLOWED_HOSTS = ['my-portfolio-eypa.onrender.com', '.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.auth',
