@@ -1783,3 +1783,78 @@ a:hover {
     font-size: 1rem;
   }
 }
+
+
+
+/* ======================
+   HAMBURGER NAVBAR
+====================== */
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hamburger {
+  width: 30px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1100;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background: #00ffff;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+/* Mobile menu */
+.nav-menu {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 14px;
+  padding: 20px;
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 0 25px rgba(0,255,255,0.25);
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-menu a:hover {
+  color: #00ffff;
+}
+
+/* Show menu */
+.nav-menu.active {
+  display: flex;
+}
+
+/* Desktop view */
+@media (min-width: 900px) {
+  .hamburger {
+    display: none;
+  }
+
+  .nav-menu {
+    position: static;
+    display: flex !important;
+    flex-direction: row;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    gap: 30px;
+  }
+}
