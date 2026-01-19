@@ -742,7 +742,6 @@ img {
   align-items: center;
   justify-content: center;
   padding: 120px 20px;
-  background: radial-gradient(circle at top, #0f0f0f, #000);
   border-bottom: 1px solid rgba(0,255,255,0.15);
 }
 
