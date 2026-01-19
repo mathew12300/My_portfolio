@@ -1796,87 +1796,20 @@ a:hover {
   align-items: center;
 }
 
+/* Hamburger Icon */
 .hamburger {
-  width: 30px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  z-index: 1100;
-}
-
-.hamburger span {
-  width: 100%;
-  height: 3px;
-  background: #00ffff;
-  border-radius: 10px;
-  transition: 0.3s;
-}
-
-/* Mobile menu */
-.nav-menu {
-  position: absolute;
-  top: 70px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.95);
-  border-radius: 14px;
-  padding: 20px;
-  display: none;
-  flex-direction: column;
-  gap: 15px;
-  box-shadow: 0 0 25px rgba(0,255,255,0.25);
-}
-
-.nav-menu a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.nav-menu a:hover {
-  color: #00ffff;
-}
-
-/* Show menu */
-.nav-menu.active {
-  display: flex;
-}
-
-/* Desktop view */
-@media (min-width: 900px) {
-  .hamburger {
-    display: none;
-  }
-
-  .nav-menu {
-    position: static;
-    display: flex !important;
-    flex-direction: row;
-    background: transparent;
-    box-shadow: none;
-    padding: 0;
-    gap: 30px;
-  }
-}
-
-
-
-/* ======================
-   BIGGER HAMBURGER ICON
-====================== */
-
-.hamburger {
-  width: 38px;              /* bigger */
+  width: 38px;
   height: 28px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 1100;
 }
 
 .hamburger span {
-  height: 4px;              /* thicker lines */
   width: 100%;
+  height: 4px;
   background: #00ffff;
   border-radius: 12px;
   transition: all 0.35s ease;
@@ -1895,18 +1828,56 @@ a:hover {
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
-
-
 /* ======================
-   BIGGER MOBILE MENU
+   MOBILE MENU
 ====================== */
+
 .nav-menu {
-  min-width: 220px;        /* wider */
-  padding: 30px 25px;      /* more space */
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  min-width: 220px;
+  padding: 30px 25px;
+  background: rgba(0, 0, 0, 0.95);
   border-radius: 18px;
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 0 25px rgba(0,255,255,0.25);
 }
 
 .nav-menu a {
-  font-size: 18px;         /* bigger text */
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
   padding: 8px 0;
+}
+
+.nav-menu a:hover {
+  color: #00ffff;
+}
+
+/* Show menu */
+.nav-menu.active {
+  display: flex;
+}
+
+/* ======================
+   DESKTOP VIEW
+====================== */
+@media (min-width: 900px) {
+  .hamburger {
+    display: none;
+  }
+
+  .nav-menu {
+    position: static;
+    display: flex !important;
+    flex-direction: row;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    gap: 30px;
+    min-width: unset;
+  }
 }
