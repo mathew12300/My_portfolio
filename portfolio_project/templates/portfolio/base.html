@@ -177,9 +177,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 function toggleMenu() {
-  document.getElementById("navMenu").classList.toggle("active");
+  const menu = document.getElementById("navMenu");
+  const burger = document.querySelector(".hamburger");
+
+  menu.classList.toggle("active");
+  burger.classList.toggle("active");
 }
 </script>
+
 
 </body>
 </html>

@@ -1858,3 +1858,55 @@ a:hover {
     gap: 30px;
   }
 }
+
+
+
+/* ======================
+   BIGGER HAMBURGER ICON
+====================== */
+
+.hamburger {
+  width: 38px;              /* bigger */
+  height: 28px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  height: 4px;              /* thicker lines */
+  width: 100%;
+  background: #00ffff;
+  border-radius: 12px;
+  transition: all 0.35s ease;
+}
+
+/* ☰ → ❌ animation */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+
+
+/* ======================
+   BIGGER MOBILE MENU
+====================== */
+.nav-menu {
+  min-width: 220px;        /* wider */
+  padding: 30px 25px;      /* more space */
+  border-radius: 18px;
+}
+
+.nav-menu a {
+  font-size: 18px;         /* bigger text */
+  padding: 8px 0;
+}
