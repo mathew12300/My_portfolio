@@ -3,9 +3,10 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'BPI5XujIjkNHSz2cER239wwqS3ABiwlj-phz7V8dmhl0lyvRhp4BnqNFULn6Bbod-UU'
-DEBUG = True
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+SECRET_KEY = 'replace-this-with-a-secure-key'
+DEBUG = False
+# ALLOWED_HOSTS
+ALLOWED_HOSTS = ['my-portfolio-eypa.onrender.com', '.onrender.com']
 
 # MIDDLEWARE — ensure WhiteNoise is right after SecurityMiddleware
 MIDDLEWARE = [

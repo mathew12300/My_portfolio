@@ -1,0 +1,18 @@
+[
+
+  {
+    "model": "portfolio.project",
+    "pk": 1,
+    "fields": {
+      "title": "Django Todo List",
+      "slug": "django-todo-list",
+      "short_description": "A full-featured Todo application built with Django.",
+      "description": "This project includes authentication, CRUD operations, and a clean UI.",
+      "tech_stack": "Django, Python, HTML, CSS",
+      "repo": "https://github.com/mathew12300/Django-todo-list",
+      "featured": true,
+      "created_at": "2024-01-01T10:00:00Z"
+    }
+  }
+]
+

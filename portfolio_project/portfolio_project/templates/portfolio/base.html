@@ -1,15 +1,22 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Mathew Rayan</title>
+
+    {% load static %}
 
     <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'portfolio/images/favicon.ico' %}">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
+<body>
+
+
 <body>
 
 <header class="navbar">
@@ -115,11 +122,11 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="footer-links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="{% url 'portfolio:home' %}">Home</a></li>
-        <li><a href="{% url 'portfolio:projects' %}">Projects</a></li>
-        <li><a href="{% url 'portfolio:skills' %}">Skills</a></li>
-        <li><a href="{% url 'portfolio:experience' %}">Experience</a></li>
-        <li><a href="{% url 'portfolio:contact' %}">Contact</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/skills">Skills</a></li>
+        <li><a href="/experience">Experience</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
     </div>
 
@@ -141,9 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
 </footer>
 
 <div id="cursor-stars"></div>
-
-</body>
-</html>
 
 <script>
   const starContainer = document.getElementById("cursor-stars");
