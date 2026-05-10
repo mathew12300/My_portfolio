@@ -1,0 +1,267 @@
+{% extends "portfolio/base.html" %}
+
+{% block hero %}
+<section class="hero search-hero">
+    <div class="hero-content">
+        <h1>Search Portfolio</h1>
+        <p>Find projects, skills, and experience</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="search-section">
+    <div class="search-container">
+        <form method="get" class="search-form" action="{% url 'portfolio:search' %}">
+            <input type="text" name="q" value="{{ results.query }}" placeholder="Search projects, skills, experience..." required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    {% if results.query %}
+        <div class="search-results">
+            {% if results.projects or results.experience or results.skills %}
+                <h2>Results for "{{ results.query }}"</h2>
+
+                <!-- Projects Results -->
+                {% if results.projects %}
+                <div class="results-section">
+                    <h3>Projects ({{ results.projects|length }})</h3>
+                    <div class="results-grid">
+                        {% for project in results.projects %}
+                        <div class="result-card project-card">
+                            <h4><a href="{% url 'portfolio:project_detail' project.slug %}">{{ project.title }}</a></h4>
+                            <p class="result-category">{{ project.category }}</p>
+                            <p class="result-summary">{{ project.summary }}</p>
+                            <div class="result-tags">
+                                {% for tech in project.tech_stack %}
+                                <span class="tag">{{ tech }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Experience Results -->
+                {% if results.experience %}
+                <div class="results-section">
+                    <h3>Experience ({{ results.experience|length }})</h3>
+                    <div class="results-list">
+                        {% for exp in results.experience %}
+                        <div class="result-card experience-card">
+                            <h4>{{ exp.title }} <span class="company">@ {{ exp.company }}</span></h4>
+                            <p class="result-date">{{ exp.start_date }} - {{ exp.end_date }}</p>
+                            <p class="result-description">{{ exp.description }}</p>
+                            {% if exp.skills %}
+                            <div class="result-tags">
+                                {% for skill in exp.skills %}
+                                <span class="tag">{{ skill }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Skills Results -->
+                {% if results.skills %}
+                <div class="results-section">
+                    <h3>Skills ({{ results.skills|length }})</h3>
+                    {% for skill_category in results.skills %}
+                    <div class="result-card skills-card">
+                        <h4>{{ skill_category.category }}</h4>
+                        <div class="result-tags">
+                            {% for skill in skill_category.items %}
+                            <span class="tag">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+            {% else %}
+                <div class="no-results">
+                    <h2>No results found for "{{ results.query }}"</h2>
+                    <p>Try searching with different keywords or browse our <a href="{% url 'portfolio:projects' %}">projects</a>.</p>
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="search-empty">
+            <p>Enter at least 2 characters to search</p>
+        </div>
+    {% endif %}
+</section>
+
+<style>
+.search-hero {
+    
+    color: #00ffff;
+    padding: 60px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.search-section {
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.search-container {
+    margin-bottom: 40px;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.search-form input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.search-form input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.search-form button {
+    padding: 12px 24px;
+    background-color: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #764ba2;
+}
+
+.search-results h2 {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.results-section {
+    margin-bottom: 40px;
+}
+
+.results-section h3 {
+    margin-bottom: 20px;
+    color: #667eea;
+    font-size: 18px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.result-card {
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.result-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.result-card h4 {
+    margin-bottom: 8px;
+}
+
+.result-card h4 a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.result-card h4 a:hover {
+    text-decoration: underline;
+}
+
+.company {
+    color: #999;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.result-category {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.result-date {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.result-summary, .result-description {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.result-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #f0f0f0;
+    color: #667eea;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.no-results, .search-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+}
+
+.no-results h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .search-form {
+        flex-direction: column;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}
