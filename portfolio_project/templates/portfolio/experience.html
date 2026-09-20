@@ -1,51 +1,59 @@
 {% extends 'portfolio/base.html' %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
-<link rel="icon" type="image/x-icon" href="{% static 'portfolio/images/favicon.ico' %}">
-{% block title %}Experience{% endblock %}
+
+{% block title %}Work Experience — Mathew Rayan{% endblock %}
 
 {% block content %}
-<section class="experience-section">
+<section class="section">
   <div class="container">
 
-    <h2 class="section-title">Experience</h2>
+    <h1 class="section-title">Industry Experience</h1>
     <p class="section-subtitle">
-      Internships and hands-on development experience building real-world applications.
+      Internships and software development engagements delivering real-world web applications and intelligent machine learning features.
     </p>
 
-    {% for exp in experiences %}
-    <div class="experience-card">
+    <div class="experience-timeline">
 
-      <div class="experience-header">
-        <h3>{{ exp.title }}</h3>
-        <span class="company">{{ exp.company }}</span>
+      {% for exp in experiences %}
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+
+        <div class="glass-card experience-card">
+
+          <div class="experience-header">
+            <div>
+              <h2 class="experience-title">{{ exp.title }}</h2>
+              <span class="experience-company">{{ exp.company }}</span>
+            </div>
+            <span class="experience-badge-date">{{ exp.duration }}</span>
+          </div>
+
+          <p class="experience-summary">
+            {{ exp.summary }}
+          </p>
+
+          <ul class="experience-points">
+            {% for point in exp.points %}
+              <li>{{ point }}</li>
+            {% endfor %}
+          </ul>
+
+          <div class="experience-skills">
+            {% for skill in exp.skills %}
+              <span class="skill-tag">{{ skill }}</span>
+            {% endfor %}
+          </div>
+
+        </div>
       </div>
-
-      <div class="experience-duration">
-        {{ exp.duration }}
-      </div>
-
-      <p class="experience-summary">
-        {{ exp.summary }}
-      </p>
-
-      <ul class="experience-list">
-        {% for point in exp.points %}
-          <li>✓ {{ point }}</li>
-        {% endfor %}
-      </ul>
-
-      <div class="experience-skills">
-        {% for skill in exp.skills %}
-          <span class="skill-tag">{{ skill }}</span>
-        {% endfor %}
-      </div>
+      {% empty %}
+        <div class="glass-card" style="padding: 40px; text-align: center;">
+          <p class="section-subtitle" style="margin-bottom: 0;">Experience records are loading.</p>
+        </div>
+      {% endfor %}
 
     </div>
-    {% endfor %}
 
   </div>
-
-
 </section>
 {% endblock %}

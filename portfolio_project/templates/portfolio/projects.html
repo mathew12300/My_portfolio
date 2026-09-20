@@ -1,35 +1,48 @@
 {% extends "portfolio/base.html" %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
-<link rel="icon" type="image/x-icon" href="{% static 'portfolio/images/favicon.ico' %}">
-{% block title %}Projects{% endblock %}
+
+{% block title %}Projects — Mathew Rayan{% endblock %}
 
 {% block content %}
 <section class="section">
   <div class="container">
 
-    <h1 class="section-title">Projects</h1>
+    <h1 class="section-title">Engineered Projects</h1>
 
     <p class="section-subtitle">
-      A curated collection of full-stack web projects showcasing my experience
-      in building practical, scalable, and user-focused applications using
-      Python and Django.
+      A curated collection of full-stack web applications and data systems engineered with Python, Django, and modern frontend technologies.
     </p>
 
     <div class="projects-grid">
 
       {% for project in projects %}
-      <div class="project-card" id="task-management">
+      <div class="glass-card project-card" id="{{ project.slug }}">
+
+        <!-- CATEGORY & STATUS BADGE -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <span class="project-meta-badge" style="position: static;">
+            {{ project.category|default:"Full Stack Application" }}
+          </span>
+          {% if project.status %}
+          <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-emerald);">
+            ● {{ project.status }}
+          </span>
+          {% endif %}
+        </div>
 
         <!-- PROJECT TITLE -->
         <h3 class="project-title">{{ project.title }}</h3>
 
-        <!-- DESCRIPTION -->
+        <!-- DESCRIPTION (using .summary from JSON) -->
         <p class="project-desc">
-          {{ project.description }}
+          {% if project.summary %}
+            {{ project.summary }}
+          {% else %}
+            {{ project.description }}
+          {% endif %}
         </p>
 
-        <!-- TECH STACK -->
+        <!-- TECH STACK CHIPS -->
         {% if project.tech_stack %}
         <div class="tech-tags">
           {% for tech in project.tech_stack %}
@@ -43,13 +56,13 @@
 
           {% if project.slug %}
           <a href="{% url 'portfolio:project_detail' project.slug %}" class="btn-primary">
-            View Details
+            View Details ↗
           </a>
           {% endif %}
 
           {% if project.repo_url %}
-          <a href="{{ project.repo_url }}" target="_blank" class="btn-outline">
-            GitHub
+          <a href="{{ project.repo_url }}" target="_blank" rel="noopener" class="btn-outline">
+            GitHub Repository
           </a>
           {% endif %}
 
@@ -57,7 +70,9 @@
 
       </div>
       {% empty %}
-        <p class="section-subtitle">No projects available at the moment.</p>
+        <div class="glass-card" style="padding: 40px; text-align: center; grid-column: 1 / -1;">
+          <p class="section-subtitle" style="margin-bottom: 0;">No projects loaded at the moment.</p>
+        </div>
       {% endfor %}
 
     </div>

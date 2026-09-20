@@ -3,117 +3,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mathew Rayan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mathew Rayan — Full Stack Python & Django Developer{% endblock %}</title>
+    <meta name="description" content="Portfolio of Mathew Rayan, a Full Stack Python Developer specializing in Django, scalable architectures, and applied AI systems.">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS & Favicon -->
     <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'portfolio/images/favicon.ico' %}">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 <body>
 
+<!-- Ambient Cursor Spotlight Follower (GPU accelerated) -->
+<div id="cursor-spotlight"></div>
+
+<!-- FLOATING FROSTED GLASS NAVBAR -->
 <header class="navbar">
-  <div class="container nav-inner">
+  <div class="container">
+    <div class="nav-inner">
+      <!-- Brand -->
+      <a class="brand" href="{% url 'portfolio:home' %}">
+        <span class="brand-dot"></span>
+        <span>
+          {% if profile and profile.full_name %}
+            {{ profile.full_name }}
+          {% else %}
+            Mathew Rayan
+          {% endif %}
+        </span>
+      </a>
 
-    <!-- Brand -->
-    <a class="brand" href="/">
-      {% if profile %}
-        {{ profile.full_name }}
-      {% else %}
-        My Portfolio
-      {% endif %}
-    </a>
+      <!-- Hamburger Toggle -->
+      <div class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
-    <!-- Hamburger Icon -->
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <!-- Nav Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="{% url 'portfolio:home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+        <a href="{% url 'portfolio:projects' %}" class="{% if request.resolver_match.url_name == 'projects' or request.resolver_match.url_name == 'project_detail' %}active{% endif %}">Projects</a>
+        <a href="{% url 'portfolio:skills' %}" class="{% if request.resolver_match.url_name == 'skills' %}active{% endif %}">Skills</a>
+        <a href="{% url 'portfolio:experience' %}" class="{% if request.resolver_match.url_name == 'experience' %}active{% endif %}">Experience</a>
+        <a href="{% url 'portfolio:contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+      </nav>
     </div>
-
-    <!-- Nav Links -->
-    <nav class="nav-menu" id="navMenu">
-      <a href="{% url 'portfolio:home' %}">Home</a>
-      <a href="{% url 'portfolio:projects' %}">Projects</a>
-      <a href="{% url 'portfolio:skills' %}">Skills</a>
-      <a href="{% url 'portfolio:experience' %}">Experience</a>
-      <a href="{% url 'portfolio:contact' %}">Contact</a>
-    </nav>
-
   </div>
 </header>
 
-
+<!-- MAIN CONTENT -->
 <main class="container">
     {% block hero %}{% endblock %}
     {% block content %}{% endblock %}
 </main>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const animatedItems = document.querySelectorAll(".experience-animate");
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  animatedItems.forEach(item => observer.observe(item));
-});
-</script>
-<script>
-  const counters = document.querySelectorAll('.stat-number');
-
-  const runCounter = (counter) => {
-    const target = +counter.getAttribute('data-target');
-    const speed = 300; // lower = faster
-
-    const update = () => {
-      const current = +counter.innerText;
-      const increment = Math.ceil(target / speed);
-
-      if (current < target) {
-        counter.innerText = current + increment;
-        setTimeout(update, 20);
-      } else {
-        counter.innerText = target + (target === 10 ? '+' : '%');
-      }
-    };
-
-    update();
-  };
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        runCounter(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.6 });
-
-  counters.forEach(counter => observer.observe(counter));
-</script>
+<!-- MINIMALIST GLASS FOOTER -->
 <footer class="footer">
-  <div class="footer-container">
-
-    <!-- BRAND -->
+  <div class="container footer-container">
+    <!-- Brand Info -->
     <div class="footer-brand">
       <h3>Mathew Rayan</h3>
       <p>
-        Full Stack Python Developer focused on building clean,
-        scalable, and user-friendly web applications.
+        Full Stack Python Developer focused on architecting secure, scalable backend solutions, clean frontend interfaces, and applied AI systems.
       </p>
     </div>
 
-    <!-- QUICK LINKS -->
+    <!-- Quick Links -->
     <div class="footer-links">
-      <h4>Quick Links</h4>
+      <h4>Navigation</h4>
       <ul>
         <li><a href="{% url 'portfolio:home' %}">Home</a></li>
         <li><a href="{% url 'portfolio:projects' %}">Projects</a></li>
@@ -123,66 +85,133 @@ document.addEventListener("DOMContentLoaded", () => {
       </ul>
     </div>
 
-    <!-- SOCIAL -->
+    <!-- Social Links -->
     <div class="footer-social">
       <h4>Connect</h4>
       <div class="social-icons">
-        <a href="https://github.com/" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
-        <a href="mailto:your@email.com">Email</a>
+        <a href="https://github.com/mathew12300" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/mathew-rayan-71918832a" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="mailto:mathewmsrp@gmail.com">Email ↗</a>
       </div>
     </div>
-
   </div>
 
-  <div class="footer-bottom">
-    <p>© 2026 Mathew Rayan. All rights reserved.</p>
+  <div class="container footer-bottom">
+    <p>© 2026 Mathew Rayan. Engineered with Python, Django & Aurora Glassmorphism.</p>
   </div>
 </footer>
 
-<div id="cursor-stars"></div>
-
-</body>
-</html>
-
+<!-- SCRIPTS: Spotlight, Card Sheen, Mobile Nav, Stats Counter -->
 <script>
-  const starContainer = document.getElementById("cursor-stars");
-
-  document.addEventListener("mousemove", (e) => {
-    const star = document.createElement("span");
-    star.className = "cursor-star";
-
-    const size = Math.random() * 4 + 4;
-    const offsetX = (Math.random() - 0.5) * 40;
-    const offsetY = (Math.random() - 0.5) * 40;
-
-    star.style.width = size + "px";
-    star.style.height = size + "px";
-    star.style.left = e.clientX + "px";
-    star.style.top = e.clientY + "px";
-    star.style.setProperty("--x", `${offsetX}px`);
-    star.style.setProperty("--y", `${offsetY}px`);
-
-    starContainer.appendChild(star);
-
-    setTimeout(() => {
-      star.remove();
-    }, 1200);
-  });
-</script>
-
-<script>
+// Mobile Navigation Toggle
 function toggleMenu() {
   const menu = document.getElementById("navMenu");
-  const burger = document.querySelector(".hamburger");
-
+  const burger = document.getElementById("hamburgerBtn");
   menu.classList.toggle("active");
   burger.classList.toggle("active");
 }
-</script>
 
+// Close mobile menu on click outside or on link click
+document.addEventListener("click", (e) => {
+  const menu = document.getElementById("navMenu");
+  const burger = document.getElementById("hamburgerBtn");
+  if (menu && burger && menu.classList.contains("active")) {
+    if (!menu.contains(e.target) && !burger.contains(e.target)) {
+      menu.classList.remove("active");
+      burger.classList.remove("active");
+    }
+  }
+});
+
+// Ambient Spotlight & Card Dynamic Sheen (GPU accelerated, zero DOM lag)
+document.addEventListener("DOMContentLoaded", () => {
+  const spotlight = document.getElementById("cursor-spotlight");
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let currentX = mouseX;
+  let currentY = mouseY;
+
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    // Track mouse coordinates for all interactive glass cards
+    document.querySelectorAll(".glass-card").forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+    });
+  });
+
+  // Smooth easing loop for ambient spotlight
+  function renderSpotlight() {
+    currentX += (mouseX - currentX) * 0.12;
+    currentY += (mouseY - currentY) * 0.12;
+    if (spotlight) {
+      spotlight.style.transform = `translate3d(${currentX - 300}px, ${currentY - 300}px, 0)`;
+    }
+    requestAnimationFrame(renderSpotlight);
+  }
+  requestAnimationFrame(renderSpotlight);
+
+  // Animated Numbers Counter for Stats
+  const counters = document.querySelectorAll('.stat-number');
+  if (counters.length > 0) {
+    const runCounter = (counter) => {
+      const target = +counter.getAttribute('data-target');
+      const suffix = counter.getAttribute('data-suffix') || (target === 10 ? '+' : (target === 100 ? '%' : '+'));
+      const duration = 1500;
+      const startTime = performance.now();
+
+      const animate = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const currentVal = Math.floor(easeProgress * target);
+
+        counter.innerText = currentVal + (progress >= 1 ? suffix : '');
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runCounter(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    counters.forEach(c => observer.observe(c));
+  }
+
+  // Animated Skill Progress Bars
+  const progressBars = document.querySelectorAll('.progress-bar');
+  if (progressBars.length > 0) {
+    const progressObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = entry.target.getAttribute('data-progress');
+          if (target) {
+            entry.target.style.width = target + '%';
+          }
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    progressBars.forEach(bar => progressObserver.observe(bar));
+  }
+});
+</script>
 
 </body>
 </html>
-
-

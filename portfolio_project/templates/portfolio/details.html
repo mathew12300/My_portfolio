@@ -1,66 +1,87 @@
 {% extends "portfolio/base.html" %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
-<link rel="icon" type="image/x-icon" href="{% static 'portfolio/images/favicon.ico' %}">
-{% block title %}{{ project.title }}{% endblock %}
+
+{% block title %}{{ project.title }} — Mathew Rayan{% endblock %}
 
 {% block content %}
-<section class="project-detail-section">
+<section class="section">
   <div class="container project-detail-grid">
 
-    <!-- LEFT CONTENT -->
-    <div class="project-detail-content">
+    <!-- LEFT CONTENT (GLASS CARD) -->
+    <div class="glass-card project-detail-content">
+
+      <!-- Back Link -->
+      <a href="{% url 'portfolio:projects' %}" style="display: inline-flex; align-items: center; gap: 6px; color: var(--accent-cyan); font-size: 0.9rem; font-weight: 500; margin-bottom: 20px;">
+        ← Back to Projects
+      </a>
 
       <h1 class="project-detail-title">
         {{ project.title }}
       </h1>
 
       <p class="project-detail-summary">
-  A full-stack web application that transforms structured data into meaningful insights, enabling informed decision-making through interactive dashboards and backend-driven analysis.
-</p>
+        {% if project.summary %}
+          {{ project.summary }}
+        {% else %}
+          {{ project.description }}
+        {% endif %}
+      </p>
 
-
-      <h3 class="project-subtitle">Key Features</h3>
+      {% if project.features %}
+      <h3 class="project-subtitle">Architectural Features</h3>
       <ul class="project-feature-list">
         {% for feature in project.features %}
-          <li>✔ {{ feature }}</li>
+          <li>{{ feature }}</li>
         {% endfor %}
       </ul>
+      {% endif %}
 
-      <h3 class="project-subtitle">Tech Stack</h3>
-<div class="project-tech-tags">
-  {% for tech in project.tech_stack %}
-    <span class="tech-chip">{{ tech }}</span>
-  {% endfor %}
-</div>
-
+      {% if project.tech_stack %}
+      <h3 class="project-subtitle">Technology Stack</h3>
+      <div class="tech-tags" style="margin-bottom: 35px;">
+        {% for tech in project.tech_stack %}
+          <span class="tech-chip">{{ tech }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
 
       <div class="project-actions">
-       <a href="{{ project.repo_url }}" target="_blank" class="btn-primary">
-       View Repository
-      </a>
+        {% if project.repo_url %}
+        <a href="{{ project.repo_url }}" target="_blank" rel="noopener" class="btn-primary">
+          View Repository on GitHub ↗
+        </a>
+        {% endif %}
 
-      <a href="{% url 'portfolio:projects' %}" class="btn-outline">
-      ← Back to Projects
-     </a>
-     </div>
-
+        <a href="{% url 'portfolio:projects' %}" class="btn-outline">
+          Explore Other Projects
+        </a>
+      </div>
 
     </div>
 
-    <!-- RIGHT SIDE -->
+    <!-- RIGHT SIDE (STICKY GLASS METADATA CARD) -->
     <div class="project-detail-side">
-      <div class="project-info-card">
+      <div class="glass-card project-info-card">
+        
         <h4>Project Focus</h4>
-       <p>Backend-driven decision logic, structured data handling, and real-time visual insights.</p>
+        <p>{{ project.focus|default:"Backend architecture, clean relational data handling, and intuitive frontend." }}</p>
 
-       <h4>Category</h4>
-        <p>Full Stack Web Application</p>
+        <h4>Category</h4>
+        <p>{{ project.category|default:"Full Stack Web Application" }}</p>
 
-      <h4>Status</h4>
-     <p class="status-complete">Completed</p>
-    </div>
+        <h4>Production Status</h4>
+        <p class="status-complete">
+          {{ project.status|default:"Completed" }}
+        </p>
 
+        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-glass);">
+          <h4 style="margin-bottom: 12px;">Share / Contact</h4>
+          <a href="{% url 'portfolio:contact' %}" class="btn-outline" style="width: 100%; text-align: center; display: block;">
+            Inquire About This Build
+          </a>
+        </div>
+
+      </div>
     </div>
 
   </div>

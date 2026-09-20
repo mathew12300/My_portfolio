@@ -23,8 +23,12 @@ def load_json(filename):
 # ---------- PAGES ----------
 def home(request):
     profile = load_json("profile.json")
+    projects = load_json("projects.json")
+    experiences = load_json("experience.json")
     return render(request, "portfolio/home.html", {
-        "profile": profile
+        "profile": profile,
+        "projects": projects,
+        "experiences": experiences
     })
 
 

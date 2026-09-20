@@ -1,89 +1,99 @@
 {% extends 'portfolio/base.html' %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
-<link rel="icon" type="image/x-icon" href="{% static 'portfolio/images/favicon.ico' %}">
-{% block title %}Skills{% endblock %}
+
+{% block title %}Skills & Technical Mastery — Mathew Rayan{% endblock %}
 
 {% block content %}
 
 <section id="skills" class="skills-section">
 
-    <h2 class="section-title">Skills</h2>
-    <p class="skills-intro">
-        I build scalable backend systems, clean user interfaces, and intelligent features — end to end.
+    <h1 class="section-title">Technical Mastery</h1>
+    <p class="section-subtitle">
+      Architecting scalable backend ecosystems, responsive user interfaces, and applied AI systems — from foundational data structures to production deployment.
     </p>
 
     <!-- CORE DEVELOPMENT -->
-    <div class="skill-category">
-        <h3 class="category-title">🚀 Core Development</h3>
+    <div class="glass-card skill-category-card">
+        <h2 class="category-title">
+          <span class="category-icon">⚙️</span>
+          <span>Core Backend & Architecture</span>
+        </h2>
 
-        <div class="skill">
+        <!-- Python -->
+        <div class="skill-item">
             <div class="skill-header">
-                <span class="skill-name">Python</span>
-                <span class="skill-level">Advanced · Production-ready</span>
+                <span class="skill-name">Python 3</span>
+                <span class="skill-level-badge">Advanced · Production-Ready · 90%</span>
             </div>
 
-            <div class="progress">
-                <div class="progress-bar" data-progress="90"></div>
+            <div class="progress-track">
+                <div class="progress-bar" data-progress="90" style="width: 0%;"></div>
             </div>
 
-            <div class="sub-skills">
-                Data Structures · OOP · Automation · APIs
+            <div class="sub-skills-pills">
+                Data Structures · Object-Oriented Architecture · Automation · High-Efficiency Concurrency
             </div>
         </div>
 
-        <div class="skill">
+        <!-- Django -->
+        <div class="skill-item">
             <div class="skill-header">
-                <span class="skill-name">Django</span>
-                <span class="skill-level">Strong Backend Expertise</span>
+                <span class="skill-name">Django & Django REST Framework</span>
+                <span class="skill-level-badge">Strong Architecture · 85%</span>
             </div>
 
-            <div class="progress">
-                <div class="progress-bar" data-progress="85"></div>
+            <div class="progress-track">
+                <div class="progress-bar" data-progress="85" style="width: 0%;"></div>
             </div>
 
-            <div class="sub-skills">
-                Authentication · ORM · REST APIs · Deployment
+            <div class="sub-skills-pills">
+                Custom Authentication · ORM Optimization · REST APIs · Security Middleware · Deployment
             </div>
         </div>
     </div>
 
     <!-- FRONTEND -->
-    <div class="skill-category">
-        <h3 class="category-title">🎨 Frontend</h3>
+    <div class="glass-card skill-category-card">
+        <h2 class="category-title">
+          <span class="category-icon">🎨</span>
+          <span>Frontend Engineering & Design Systems</span>
+        </h2>
 
-        <div class="skill">
+        <div class="skill-item">
             <div class="skill-header">
-                <span class="skill-name">HTML / CSS</span>
-                <span class="skill-level">Responsive & Modern UI</span>
+                <span class="skill-name">HTML5 / CSS3 / Modern JavaScript</span>
+                <span class="skill-level-badge">Responsive & Glassmorphic UI · 80%</span>
             </div>
 
-            <div class="progress">
-                <div class="progress-bar" data-progress="80"></div>
+            <div class="progress-track">
+                <div class="progress-bar" data-progress="80" style="width: 0%;"></div>
             </div>
 
-            <div class="sub-skills">
-                Flexbox · Grid · Animations · Responsive Design
+            <div class="sub-skills-pills">
+                Glassmorphism · Responsive CSS Grid/Flexbox · Micro-Animations · Mobile-First Architecture
             </div>
         </div>
     </div>
 
     <!-- APPLIED AI -->
-    <div class="skill-category">
-        <h3 class="category-title">🤖 Applied AI</h3>
+    <div class="glass-card skill-category-card">
+        <h2 class="category-title">
+          <span class="category-icon">🧠</span>
+          <span>Applied AI & Computer Vision</span>
+        </h2>
 
-        <div class="skill">
+        <div class="skill-item">
             <div class="skill-header">
-                <span class="skill-name">AI & ML</span>
-                <span class="skill-level">Applied in Real Projects</span>
+                <span class="skill-name">Machine Learning & Computer Vision</span>
+                <span class="skill-level-badge">Applied Integration · 70%</span>
             </div>
 
-            <div class="progress">
-                <div class="progress-bar" data-progress="70"></div>
+            <div class="progress-track">
+                <div class="progress-bar" data-progress="70" style="width: 0%;"></div>
             </div>
 
-            <div class="sub-skills">
-                OpenCV · Model Training · TensorFlow Basics
+            <div class="sub-skills-pills">
+                OpenCV Facial Detection · Model Training · TensorFlow Basics · Scikit-Learn Pipelines
             </div>
         </div>
     </div>
